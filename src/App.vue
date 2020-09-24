@@ -4,44 +4,70 @@
       src="./assets/logo.png"
       alt=""
       srcset=""
-      style="width: 30%; padding: 40px"
+      style="width: 300px; padding: 40px"
     />
 
-    <input type="text" class="search-bar" v-model="searchText" />
+    <input
+      type="text"
+      class="search-bar"
+      placeholder="喵嗷~"
+      v-model="searchText"
+      @keydown.299="null"
+      @keydown.13="doSearch()"
+    />
+
+    <div class="select-container">
+      <search-select
+        v-for="item in engineList"
+        :key="item.id"
+        :title="item.name"
+        :logo-url="item.imgUrl"
+        :searchUrl="item.searchUrl"
+        :index="item.id"
+        :engine="item"
+      >
+      </search-select>
+    </div>
   </div>
 </template>
 
 <script>
+import searchSelect from './components/SearchSelect.vue'
+import baiduImgUrl from './assets/baidu.png'
+import data from './assets/data.js'
+
 export default {
   data() {
     return {
-      searchText: ''
+      searchText: '',
+      imgUrl: baiduImgUrl,
+      engineList: data.engineList
     }
+  },
+  methods: {
+    doSearch: function() {
+      let queryRegex = /{query}/
+      let url = this.engineList.find(item => {
+        return item.id == this.$store.state.currentEngineIndex
+      }).searchUrl
+      console.log(queryRegex.test(url))
+
+      window.location.href = url.replace(queryRegex, this.searchText)
+    }
+  },
+  components: {
+    'search-select': searchSelect
+  },
+  beforeCreate() {
+    data.engineList.forEach(item => {
+      // 使用 require 访问 assets 中的静态文件
+      item.imgUrl = require(`./assets/${item.imgName}.png`)
+    })
   }
 }
 </script>
 
 <style lang="scss">
-// transparent black for text
-$black-87: rgba(0, 0, 0, 0.87);
-$black-60: rgba(0, 0, 0, 0.6);
-$black-38: rgba(0, 0, 0, 0.38);
-$black-20: rgba(0, 0, 0, 0.2);
-$black-08: rgba(0, 0, 0, 0.08);
-$black-04: rgba(0, 0, 0, 0.04);
-
-// gray
-$gray-87: #212121;
-$gray-60: #666666;
-$gray-38: #9e9e9e;
-$gray-08: #d8d8d8;
-$gray-04: #f5f5f5;
-
-// white
-$white-70: rgba(255, 255, 255, 0.7);
-$white-50: rgba(255, 255, 255, 0.5);
-$white-30: rgba(255, 255, 255, 0.3);
-
 #app {
   height: 100vh;
   width: 100vw;
@@ -49,16 +75,31 @@ $white-30: rgba(255, 255, 255, 0.3);
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  input::-webkit-input-placeholder {
+    color: $black-20;
+    font-weight: 500;
+  }
 }
 
 .search-bar {
   height: 40px;
-  width: 40%;
+  width: 60%;
   background-color: $gray-04;
   font-size: 36px;
   padding: 20px 40px;
   border-radius: 40px;
   border: none;
+  margin-bottom: 40px;
+  font-weight: 600;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: $black-60;
+}
+
+.select-container {
+  width: 50%;
+  position: relative;
+  right: 40px;
+  display: flex;
 }
 
 input {
