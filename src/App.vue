@@ -8,7 +8,7 @@
     />
 
     <input
-      type="text"
+      type="search"
       class="search-bar"
       placeholder="喵嗷~"
       v-model="searchText"
