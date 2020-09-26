@@ -43,10 +43,10 @@ p {
 @mixin select {
   display: flex;
   align-items: center;
-  padding: 5px 30px;
-  font-size: 17px;
-  border-radius: 100px;
-  margin: 10px;
+  padding: 0.4rem 2rem;
+  font-size: 1rem;
+  border-radius: 10rem;
+  margin: 0.6rem;
   border: none;
   outline: none;
   cursor: pointer;
@@ -91,9 +91,9 @@ p {
 }
 
 .logo {
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   object-fit: contain;
-  margin-right: 20px;
+  margin-right: 1rem;
 }
 </style>

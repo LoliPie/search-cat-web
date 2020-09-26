@@ -4,7 +4,7 @@
       src="./assets/logo.png"
       alt=""
       srcset=""
-      style="width: 300px; padding: 40px"
+      style="width: 18rem; padding: 40px;min-width: 5rem"
     />
 
     <input
@@ -73,31 +73,49 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 16px;
   input::-webkit-input-placeholder {
     color: $black-20;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 2rem;
   }
 }
 
 .search-bar {
-  height: 40px;
+  height: 3rem;
   width: 60%;
   background-color: $gray-04;
-  font-size: 36px;
-  padding: 20px 40px;
-  border-radius: 40px;
+  font-size: 2rem;
+  padding: 1.5rem 2.5rem;
+  border-radius: 3rem;
   border: none;
-  margin-bottom: 40px;
+  margin-bottom: 3rem;
   font-weight: 600;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: $black-60;
+  max-width: 800px;
 }
 
 .select-container {
-  width: 50%;
-  position: relative;
-  right: 40px;
+  width: 60%;
+  max-width: 750px;
+  min-width: 300px;
+  right: 2rem;
   display: flex;
+  flex-wrap: wrap;
+  transition: 0.2s;
+}
+
+// 针对移动端优化
+@media only screen and (max-width: 500px) {
+  .search-bar {
+    width: 80%;
+    transition: 0.2s;
+  }
+  .select-container {
+    width: 85%;
+    transition: 0.2s;
+  }
 }
 
 input {
