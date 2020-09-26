@@ -86,7 +86,7 @@ export default {
   width: 60%;
   background-color: $gray-04;
   font-size: 2rem;
-  padding: 1.5rem 2.5rem;
+  padding: 2.5rem 2.5rem;
   border-radius: 3rem;
   border: none;
   margin-bottom: 3rem;
