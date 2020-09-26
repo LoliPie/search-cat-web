@@ -6,24 +6,25 @@
       srcset=""
       style="width: 18rem; padding: 40px;min-width: 5rem"
     />
+    <form action="">
+      <input
+        type="text"
+        class="search-bar desktop"
+        placeholder="喵嗷~"
+        v-model="searchText"
+        @keydown.299="null"
+        @keydown.13="doSearch()"
+      />
 
-    <input
-      type="text"
-      class="search-bar desktop"
-      placeholder="喵嗷~"
-      v-model="searchText"
-      @keydown.299="null"
-      @keydown.13="doSearch()"
-    />
-
-    <input
-      type="search"
-      class="search-bar mobile"
-      placeholder="在手机上喵嗷~"
-      v-model="searchText"
-      @keydown.299="null"
-      @keydown.13="doSearch()"
-    />
+      <input
+        type="search"
+        class="search-bar mobile"
+        placeholder="在手机上喵嗷~"
+        v-model="searchText"
+        @keydown.299="null"
+        @keydown.13="doSearch()"
+      />
+    </form>
 
     <div class="select-container">
       <search-select
@@ -76,7 +77,7 @@ export default {
 
 <style lang="scss">
 #app {
-  height: 80vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -90,19 +91,28 @@ export default {
   }
 }
 
-.search-bar {
+form {
   width: 60%;
+  max-width: 800px;
+  min-width: 320px;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-items: center;
+  align-content: center;
+}
+
+.search-bar {
+  width: 100%;
   background-color: $gray-04;
   font-size: 2rem;
   padding: 1.5rem 2.5rem;
   border-radius: 3rem;
   border: none;
-  margin-bottom: 3rem;
+  margin: 0;
+
   font-weight: 600;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: $black-60;
-  max-width: 800px;
-  min-width: 320px;
 }
 
 .select-container {

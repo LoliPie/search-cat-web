@@ -34,10 +34,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-p {
+.title {
   // 设置文字不折行
   word-wrap: none;
   white-space: nowrap;
+  font-size: 1.15rem;
+  font-weight: 500;
 }
 
 @mixin select {
