@@ -1,26 +1,33 @@
 <template>
   <button
-    :class="
-      this.$store.state.currentEngineIndex == this.index ? 'selected' : 'select'
-    "
+    :class="isSelected ? 'selected' : 'select'"
     @click="handle()"
     :style="
-      this.$store.state.currentEngineIndex == this.index
+      isSelected
         ? { backgroundColor: engine.themeColor }
         : { backgroundColor: '#f5f5f5' }
     "
   >
-    <img :src="logoUrl" alt="" class="logo" />
-    <p class="title">{{ title }}</p>
+    <!-- <img :src="logoUrl" alt="" class="logo" /> -->
+    <icon-svg
+      :icon-class="isSelected ? `${engine.imgName}-white` : engine.imgName"
+      class="logo"
+    ></icon-svg>
+    <p class="title">{{ engine.name }}</p>
   </button>
 </template>
 
 <script>
 export default {
-  props: ['searchUrl', 'title', 'cmd', 'logoUrl', 'index', 'engine'],
+  props: ['logoUrl', 'engine'],
   methods: {
     handle() {
-      this.$store.commit('changeEngine', this.index)
+      this.$store.commit('changeEngine', this.engine.id)
+    }
+  },
+  computed: {
+    isSelected() {
+      return this.$store.state.currentEngineIndex == this.engine.id
     }
   }
 }
@@ -62,9 +69,13 @@ p {
   transition: 0.2s;
 }
 
+// 选定状态下的样式
 .selected {
   @include select;
   background-color: bisque;
+  p {
+    color: #fff;
+  }
 }
 
 .selected:hover {
@@ -83,6 +94,6 @@ p {
   width: 30px;
   height: 30px;
   object-fit: contain;
-  padding-right: 20px;
+  margin-right: 20px;
 }
 </style>

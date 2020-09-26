@@ -20,10 +20,7 @@
       <search-select
         v-for="item in engineList"
         :key="item.id"
-        :title="item.name"
         :logo-url="item.imgUrl"
-        :searchUrl="item.searchUrl"
-        :index="item.id"
         :engine="item"
       >
       </search-select>
@@ -45,13 +42,13 @@ export default {
     }
   },
   methods: {
+    // 执行搜索动作
     doSearch: function() {
       let queryRegex = /{query}/
       let url = this.engineList.find(item => {
         return item.id == this.$store.state.currentEngineIndex
       }).searchUrl
       console.log(queryRegex.test(url))
-
       window.location.href = url.replace(queryRegex, this.searchText)
     }
   },
@@ -61,6 +58,7 @@ export default {
   beforeCreate() {
     data.engineList.forEach(item => {
       // 使用 require 访问 assets 中的静态文件
+      // 获得的地址存在 item.imgUrl 属性中
       item.imgUrl = require(`./assets/${item.imgName}.png`)
     })
   }
