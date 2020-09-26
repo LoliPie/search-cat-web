@@ -8,9 +8,18 @@
     />
 
     <input
-      type="search"
-      class="search-bar"
+      type="text"
+      class="search-bar desktop"
       placeholder="喵嗷~"
+      v-model="searchText"
+      @keydown.299="null"
+      @keydown.13="doSearch()"
+    />
+
+    <input
+      type="search"
+      class="search-bar mobile"
+      placeholder="在手机上喵嗷~"
       v-model="searchText"
       @keydown.299="null"
       @keydown.13="doSearch()"
@@ -82,11 +91,10 @@ export default {
 }
 
 .search-bar {
-  height: 3rem;
   width: 60%;
   background-color: $gray-04;
   font-size: 2rem;
-  padding: 2.5rem 2.5rem;
+  padding: 1.5rem 2.5rem;
   border-radius: 3rem;
   border: none;
   margin-bottom: 3rem;
@@ -94,6 +102,7 @@ export default {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: $black-60;
   max-width: 800px;
+  min-width: 320px;
 }
 
 .select-container {
@@ -103,7 +112,6 @@ export default {
   right: 2rem;
   display: flex;
   flex-wrap: wrap;
-  transition: 0.2s;
 }
 
 // 针对移动端优化
@@ -114,7 +122,6 @@ export default {
   }
   .select-container {
     width: 85%;
-    transition: 0.2s;
   }
 }
 
