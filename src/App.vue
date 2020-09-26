@@ -14,6 +14,7 @@
         v-model="searchText"
         @keydown.299="null"
         @keydown.13="doSearch()"
+        v-focus
       />
 
       <input
@@ -23,6 +24,7 @@
         v-model="searchText"
         @keydown.299="null"
         @keydown.13="doSearch()"
+        v-focus
       />
     </form>
 
@@ -71,6 +73,13 @@ export default {
       // 获得的地址存在 item.imgUrl 属性中
       item.imgUrl = require(`./assets/${item.imgName}.png`)
     })
+  },
+  directives: {
+    focus: {
+      inserted(el, binding) {
+        el.focus()
+      }
+    }
   }
 }
 </script>
@@ -126,7 +135,7 @@ form {
 
 // 针对移动端优化
 @media only screen and (max-width: 500px) {
-  .search-bar {
+  form {
     width: 80%;
     transition: 0.2s;
   }

@@ -39,13 +39,14 @@ export default {
   word-wrap: none;
   white-space: nowrap;
   font-size: 1.15rem;
-  font-weight: 500;
+  font-weight: 700;
+  color: $black-87;
 }
 
 @mixin select {
   display: flex;
   align-items: center;
-  padding: 0.4rem 2rem;
+  padding: 0.2rem 1.5rem;
   font-size: 1rem;
   border-radius: 10rem;
   margin: 0.6rem;
@@ -60,15 +61,15 @@ export default {
 }
 
 .select:hover {
-  transform: translate(0, -10px);
+  transform: translate(0, -0.2rem);
   box-shadow: 0px 10px 20px $black-08;
-  transition: 0.2s;
+  transition: transform 0.2s;
 }
 
 .select:active {
   background-color: #fff;
-  transform: translate(0, -5px);
-  transition: 0.2s;
+  transform: translate(0, -0.1rem);
+  transition: transform 0.2s;
 }
 
 // 选定状态下的样式
@@ -81,21 +82,21 @@ export default {
 }
 
 .selected:hover {
-  transform: translate(0, -10px);
+  transform: translate(0, -0.2rem);
   box-shadow: 0px 10px 20px $black-08;
-  transition: 0.2s;
+  transition: transform 0.2s;
 }
 
 .selected:active {
   background-color: #fff;
-  transform: translate(0, -5px);
-  transition: 0.2s;
+  transform: translate(0, -0.1rem);
+  transition: transform 0.2s;
 }
 
 .logo {
   width: 2rem;
   height: 2rem;
   object-fit: contain;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 }
 </style>
