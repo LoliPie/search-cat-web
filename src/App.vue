@@ -86,6 +86,8 @@ export default {
 
 <style lang="scss">
 #app {
+  padding: 0;
+  margin: 0;
   height: 100vh;
   width: 100vw;
   display: flex;
