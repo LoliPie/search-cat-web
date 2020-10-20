@@ -1,5 +1,6 @@
 <template>
   <div class="icon-container">
+    <!-- 调用 iconfont 中的 svg 图标 -->
     <svg class="icon" aria-hidden="true">
       <use :xlink:href="wholeIconName"></use>
     </svg>

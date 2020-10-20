@@ -7,6 +7,7 @@
       style="width: 18rem; padding: 40px;min-width: 5rem"
     />
     <form action="">
+      <!-- 在桌面端的搜索框 -->
       <input
         type="text"
         class="search-bar desktop"
@@ -17,6 +18,7 @@
         v-focus
       />
 
+      <!-- 在移动端的搜索框 -->
       <input
         type="search"
         class="search-bar mobile"
@@ -49,8 +51,8 @@ export default {
   data() {
     return {
       searchText: '',
-      imgUrl: baiduImgUrl,
-      engineList: data.engineList
+      // imgUrl: baiduImgUrl,
+      engineList: data.engineList // 搜索引擎数组
     }
   },
   methods: {
@@ -88,11 +90,13 @@ export default {
 #app {
   padding: 0;
   margin: 0;
-  height: 100vh;
+  // height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
+  position: absolute;
+  top: 15%;
   align-items: center;
   font-size: 16px;
   input::-webkit-input-placeholder {
@@ -120,10 +124,9 @@ form {
   border-radius: 3rem;
   border: none;
   margin: 0;
-
   font-weight: 600;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: $black-60;
+  color: $black-87;
 }
 
 .select-container {

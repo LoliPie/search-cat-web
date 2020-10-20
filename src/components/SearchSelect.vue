@@ -8,7 +8,8 @@
         : { backgroundColor: '#f5f5f5' }
     "
   >
-    <!-- <img :src="logoUrl" alt="" class="logo" /> -->
+
+    <!-- 选中的状态下 icon class 后缀增加「-white」 -->
     <icon-svg
       :icon-class="isSelected ? `${engine.imgName}-white` : engine.imgName"
       class="logo"
