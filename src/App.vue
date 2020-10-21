@@ -1,10 +1,16 @@
 <template>
   <div id="app">
+    <transition name="fade">
+      <pop-up @dismiss="togglePopup" v-if="popupState"></pop-up>
+    </transition>
+
     <img
       src="./assets/logo.png"
       alt=""
       srcset=""
       style="width: 18rem; padding: 40px;min-width: 5rem"
+      @click="togglePopup"
+      class="big-logo"
     />
     <form action="">
       <!-- 在桌面端的搜索框 -->
@@ -46,13 +52,15 @@
 import searchSelect from './components/SearchSelect.vue'
 import baiduImgUrl from './assets/baidu.png'
 import data from './assets/data.js'
+import popup from './components/Popup.vue'
 
 export default {
   data() {
     return {
       searchText: '',
       // imgUrl: baiduImgUrl,
-      engineList: data.engineList // 搜索引擎数组
+      engineList: data.engineList, // 搜索引擎数组
+      popupState: false
     }
   },
   methods: {
@@ -64,10 +72,15 @@ export default {
       }).searchUrl
       console.log(queryRegex.test(url))
       window.location.href = url.replace(queryRegex, this.searchText)
+    },
+    // 显示弹窗
+    togglePopup: function() {
+      this.popupState = !this.popupState
     }
   },
   components: {
-    'search-select': searchSelect
+    'search-select': searchSelect,
+    'pop-up': popup
   },
   beforeCreate() {
     data.engineList.forEach(item => {
@@ -104,6 +117,10 @@ export default {
     font-weight: 600;
     font-size: 2rem;
   }
+}
+
+.big-logo:hover {
+  cursor: pointer;
 }
 
 form {
@@ -146,6 +163,9 @@ form {
   }
   .select-container {
     width: 85%;
+  }
+  #app {
+    top: 5%;
   }
 }
 
